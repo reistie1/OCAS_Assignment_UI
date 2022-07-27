@@ -1,0 +1,13 @@
+<app-header></app-header>
+<h3 class="text-center p-2 mt-4">Teacher</h3>
+<app-teacher-form (updateParent)="doSomething($event)" *ngIf="toggle"></app-teacher-form>
+<app-edit-teacher-form *ngIf="toggleEdit" [data]="editValue" (hideForm)="hideEditForm($event)" (updateParent)="doSomethingAfterEdit($event)"></app-edit-teacher-form>
+<div class="col-12 d-flex justify-content-end flex-column">
+  <div class="col-12 d-flex justify-content-end">
+    <button class="btn btn-warning col-1 mb-3 box-shadow" (click)="toggleForm()">+ Add</button>
+  </div>
+  <app-teacher-list [list]="data" (updateParent)="doSomethingEdit($event)" (sendDeleteTeacherId)="deleteTeacher($event)"></app-teacher-list>
+</div>
+
+
+

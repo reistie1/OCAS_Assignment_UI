@@ -1,1 +1,54 @@
-<p>edit-course-form works!</p>
+<div class="colour-background d-flex justify-content-center p-4">
+  <div class="col-6 card p-2">
+    <h4 class="text-center">Add Course</h4>
+    <form class="form-group" [formGroup]="CourseForm" #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <div class="col-12 p-1">
+        <label for="courseCode">Course Code</label>
+        <input class="form-control mb-2" type="text" id="courseCode" name="courseCode" formControlName="courseCode" required/>
+        <div class="text-danger" *ngIf="CourseForm.controls['courseCode'].errors && CourseForm.controls['courseCode'].errors?.['required']">
+          Course code is required.
+        </div>
+        <div class="text-danger" *ngIf="CourseForm.controls['courseCode'].errors && CourseForm.controls['courseCode'].errors?.['max']">
+          Course code max length is 100 characters.
+        </div>
+        <div class="text-danger" *ngIf="CourseForm.controls['courseCode'].errors && CourseForm.controls['courseCode'].errors?.['pattern']">
+          Course code has invalid character.
+        </div>
+      </div>
+      <div class="col-12 p-1">
+        <label for="courseName">Course Name</label>
+        <input class="form-control mb-2" type="text" id="courseName" name="courseName" formControlName="courseName" required/>
+        <div class="text-danger" *ngIf="CourseForm.controls['courseName'].errors && CourseForm.controls['courseName'].errors?.['required']">
+          Course name is required.
+        </div>
+        <div class="text-danger" *ngIf="CourseForm.controls['courseName'].errors && CourseForm.controls['courseName'].errors?.['max']">
+          Course name max length is 100 characters.
+        </div>
+        <div class="text-danger" *ngIf="CourseForm.controls['courseName'].errors && CourseForm.controls['courseName'].errors?.['pattern']">
+          Course name has invalid character.
+        </div>
+      </div>
+      <div class="col-12 p-1">
+        <label for="description">Description</label>
+        <div>
+          <textarea class="form-control mb-2" rows="5" id="description"  name="description" formControlName="description" required></textarea>
+        </div>
+        <div class="text-danger" *ngIf="CourseForm.controls['description'].errors && CourseForm.controls['description'].errors?.['required']">
+          Course description is required.
+        </div>
+        <div class="text-danger" *ngIf="CourseForm.controls['description'].errors && CourseForm.controls['description'].errors?.['max']">
+          Course description max length is 100 characters.
+        </div>
+        <div class="text-danger" *ngIf="CourseForm.controls['description'].errors && CourseForm.controls['description'].errors?.['pattern']">
+          Course description has invalid character.
+        </div>
+      </div>
+      <div class="col-12 d-flex justify-content-end p-1">
+        <button class="col-3 btn btn-primary m-1" type="submit" [disabled]="!CourseForm.valid">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+

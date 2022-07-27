@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Student } from 'src/models/Student';
-import { StudentService } from 'src/services/student-service.service';
+import { StudentService } from 'src/services/student.service';
 
 @Component({
   selector: 'app-student-form',
@@ -9,7 +9,9 @@ import { StudentService } from 'src/services/student-service.service';
   styleUrls: ['./student-form.component.sass']
 })
 export class StudentFormComponent implements OnInit {
-  data: Array<Student>
+  public data: Array<Student>
+  @Output() UpdateParent = new EventEmitter<any>();
+
   studentForm = new FormGroup({
     firstName: new FormControl('', [
       Validators.required,
@@ -37,9 +39,10 @@ export class StudentFormComponent implements OnInit {
 
     this.studentService.addStudent(submitValue).subscribe((resp: any) => {
       this.data = resp.data;
+      this.studentForm.reset();
+      this.UpdateParent.emit();
     });
 
-    this.studentForm.reset();
   }
 
   FormatStudentForm(values: any)

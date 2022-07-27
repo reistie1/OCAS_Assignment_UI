@@ -1,0 +1,56 @@
+<div class="colour-background d-flex justify-content-center p-4 back-drop">
+  <div class="col-6 card p-2 box-shadow">
+    <h4 class="text-center">Edit Teacher</h4>
+    <form class="form-group" [formGroup]="teacherForm" #f="ngForm" (ngSubmit)="submitForm(f)">
+      <div class="col-12 p-1">
+        <label for="firstName">First Name</label>
+        <input class="form-control mb-2" type="text" id="firstName" name="firstName" formControlName="firstName" required/>
+        <div class="text-danger" *ngIf="teacherForm.controls['firstName'].errors && teacherForm.controls['firstName'].errors?.['required']">
+          First name is required.
+        </div>
+        <div class="text-danger" *ngIf="teacherForm.controls['firstName'].errors && teacherForm.controls['firstName'].errors?.['max']">
+          First name max length is 100 characters.
+        </div>
+        <div class="text-danger" *ngIf="teacherForm.controls['firstName'].errors && teacherForm.controls['firstName'].errors?.['pattern']">
+          First name has invalid character.
+        </div>
+      </div>
+      <div class="col-12 p-1">
+        <label for="lastName">Last Name</label>
+        <input class="form-control mb-2" type="text" id="lastName" name="lastName" formControlName="lastName" required/>
+        <div class="text-danger" *ngIf="teacherForm.controls['lastName'].errors && teacherForm.controls['lastName'].errors?.['required']">
+          Last name is required.
+        </div>
+        <div class="text-danger" *ngIf="teacherForm.controls['lastName'].errors && teacherForm.controls['lastName'].errors?.['max']">
+          Last name max length is 100 characters.
+        </div>
+        <div class="text-danger" *ngIf="teacherForm.controls['lastName'].errors && teacherForm.controls['lastName'].errors?.['pattern']">
+          Last name has invalid character.
+        </div>
+      </div>
+      <div class="col-12 p-1">
+        <label for="subjectClassifier">Subject Classifier</label>
+        <div>
+          <input class="form-control mb-2" id="subjectClassifier"  name="subjectClassifier" formControlName="subjectClassifier" required/>
+        </div>
+        <div class="text-danger" *ngIf="teacherForm.controls['subjectClassifier'].errors && teacherForm.controls['subjectClassifier'].errors?.['required']">
+          Teacher subject classifier is required.
+        </div>
+        <div class="text-danger" *ngIf="teacherForm.controls['subjectClassifier'].errors && teacherForm.controls['subjectClassifier'].errors?.['max']">
+          Teacher subject classifier max length is 100 characters.
+        </div>
+        <div class="text-danger" *ngIf="teacherForm.controls['subjectClassifier'].errors && teacherForm.controls['subjectClassifier'].errors?.['pattern']">
+          Teacher subject classifier has invalid character.
+        </div>
+      </div>
+      <div class="col-12 d-flex justify-content-end p-0">
+        <button class="col-3 btn btn-primary m-1" (click)="CancelForm()">Cancel</button>
+        <button class="col-3 btn btn-primary m-1" type="submit" [disabled]="!teacherForm.valid">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+

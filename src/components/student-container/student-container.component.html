@@ -1,12 +1,11 @@
-<div class="container-fluid col-12 d-flex flex-column justify-content-center p-4">
-  <h3 class="text-center">Courses</h3>
-  <div class= "col-12 d-flex justify-content-end p-2">
-    <button class="col-2 btn btn-secondary">Add</button>
+<app-header></app-header>
+<h3 class="text-center p-2 mt-4">Student</h3>
+<app-student-form *ngIf="showAddForm" (UpdateParent)="FetchListAfterUpdate($event)"></app-student-form>
+<app-edit-student-form *ngIf="showEditForm" [data]="editValue" (UpdateParent)="FetchListAfterUpdate($event)"></app-edit-student-form>
+<div class="col-12 d-flex justify-content-end flex-column">
+  <div class="col-12 d-flex justify-content-end">
+    <button class="btn btn-warning col-1 mb-3 box-shadow" (click)="ToggleShowAddForm(null)">+ Add</button>
   </div>
-  <div>
-
-  </div>
-  <app-student-form></app-student-form>
-  <app-student-list [list]="data"></app-student-list>
+  <app-student-list [list]="data" (PassDeleteValue)="DeleteStudent($event)" (PassEditValue)="SetEditStudentValue($event)"></app-student-list>
 </div>
 

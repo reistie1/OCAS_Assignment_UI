@@ -8,34 +8,68 @@ import { Course } from '../../models/Course';
   styleUrls: ['./course-container.component.sass']
 })
 export class CourseContainerComponent implements OnInit {
-  public show:boolean = true;
+  public showAddForm: boolean = false;
+  public showEditForm: boolean = false;
   public data: Array<Course>;
+  public editValue: any;
 
   constructor(private courseService: CourseService) { }
 
   ngOnInit(): void {
-    this.courseService.getCourseList("a0694c99-bbe6-42f4-88d5-13ebe5baa849").subscribe((response: any) => {
-      this.data = response.data
+    this.FetchCourseList((resp: any) => { this.data = resp.data })
+  }
+
+  DeleteStudent(courseId: any)
+  {
+    this.courseService.deleteCourse(courseId).subscribe((resp: any) => {
+      this.FetchCourseList((resp: any) => {
+        this.data = resp.data;
+      })
     });
   }
 
-
-  toggleFn()
+  UpdateStudent(course: any)
   {
-    console.log(this.show)
-    this.show = !this.show;
+    this.editValue = course;
+    this.toggleEditForm(null);
   }
 
-  doSomething(data: any)
+  FetchCourseList(fn: any)
   {
-    this.data.concat(data);
-    console.log(this.data);
+    this.courseService.getCourseList("a0694c99-bbe6-42f4-88d5-13ebe5baa849").subscribe(fn);
   }
 
-  toggleAnother(data: any)
+  GetCourse(data: any)
   {
-    this.show = !this.show;
-
+    this.FetchCourseList((resp: any) => {
+      this.data = resp.data;
+      this.CloseAllForms();
+    });
   }
+
+  toggleAddForm(data: any)
+  {
+    if(this.showEditForm)
+    {
+      this.showEditForm = !this.showEditForm
+    }
+    this.showAddForm = !this.showAddForm;
+  }
+
+  toggleEditForm(data: any)
+  {
+    if(this.showAddForm)
+    {
+      this.showAddForm = !this.showAddForm
+    }
+    this.showEditForm = !this.showEditForm;
+  }
+
+  CloseAllForms()
+  {
+    this.showAddForm = false;
+    this.showEditForm = false;
+  }
+
 
 }

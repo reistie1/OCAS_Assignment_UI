@@ -8,23 +8,24 @@ import { CourseService } from 'src/services/course.service';
   styleUrls: ['./course-list.component.sass']
 })
 export class CourseListComponent implements OnInit {
-  @Input() toggle: () => void
-  @Output() updateToggle = new EventEmitter();
+  public deleteId: string;
+
+  @Input('list') data: any[];
+  @Output() DeleteCourseId = new EventEmitter();
+  @Output() SetCourseToEdit = new EventEmitter();
 
   constructor() {}
 
-  @Input('list') data: any[];
+  ngOnInit(): void {}
 
-
-
-  ngOnInit(): void {
-
-    console.log(this.data);
+  SetDeleteCourseId(courseId: string)
+  {
+    this.DeleteCourseId.emit(courseId);
   }
 
-  clickFn() {
-
-    this.toggle();
+  SetEditableCourse(data: any)
+  {
+    this.SetCourseToEdit.emit(data);
   }
 
 

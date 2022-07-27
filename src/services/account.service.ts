@@ -12,7 +12,9 @@ import { User } from '../models/User';
 export class AccountService {
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': 'http://localhost:4200',
+      'Access-Control-Allow-Credentials': 'true'
     })
   }
 
@@ -20,7 +22,19 @@ export class AccountService {
   {}
 
   register(register: any) {
-    return this.http.post(`${environment}/Account/register`, {...register}).pipe(
+    return this.http.post(`${environment}/Account/register`, register, this.httpOptions).pipe(
+      catchError(this.errorHandler)
+    );
+  }
+
+  login(login: any) {
+    return this.http.post(`${environment}/Account/login`, login, this.httpOptions).pipe(
+      catchError(this.errorHandler)
+    );
+  }
+
+  logout(login: any) {
+    return this.http.post(`${environment}/Account/logout`, login, this.httpOptions).pipe(
       catchError(this.errorHandler)
     );
   }

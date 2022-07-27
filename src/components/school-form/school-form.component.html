@@ -1,0 +1,41 @@
+<div class="colour-background d-flex justify-content-center p-4">
+  <div class="col-6 card p-2 box-shadow">
+    <h4 class="text-center">School Information</h4>
+    <form class="form-group" [formGroup]="SchoolForm" #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <div class="col-12 p-1">
+        <label for="schoolName">School Name</label>
+        <input class="form-control mb-2" type="text" id="schoolName" name="schoolName" formControlName="schoolName" required/>
+        <div *ngIf="SchoolForm.controls['schoolName'].errors && SchoolForm.controls['schoolName'].errors?.['required']">
+          Name is required.
+        </div>
+      </div>
+      <div class="col-12 p-1">
+        <label for="address1">Address1</label>
+        <input class="form-control mb-2" type="text" id="address1" name="address1" formControlName="address1" required/>
+      </div>
+      <div class="col-12 p-1">
+        <label for="address2">Address2</label>
+        <input class="form-control mb-2" type="text" id="address2" name="address2" formControlName="address2"/>
+      </div>
+      <div class="col-6 p-1">
+        <label for="city">City</label>
+        <input class="form-control mb-2" type="text" id="city" name="city" formControlName="city" required/>
+      </div>
+      <div class="d-flex justify-content-between">
+        <div class="col-6 p-1">
+          <label for="postalCode">Postal Code</label>
+          <input class="form-control mb-2" type="text" id="postalCode" name="postalCode" formControlName="postalCode" required/>
+        </div>
+        <div class="col-6 p-1">
+          <label for="province">Province</label>
+          <input class="form-control mb-2" type="text" id="province" name="province" formControlName="province" required/>
+        </div>
+      </div>
+      <div class="col-12 d-flex justify-content-end p-1">
+        <button class="col-3 btn btn-primary m-1" type="submit" [disabled]="!SchoolForm.valid">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+

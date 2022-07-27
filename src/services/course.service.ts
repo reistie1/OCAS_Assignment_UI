@@ -34,6 +34,16 @@ export class CourseService {
     )
   }
 
+  updateCourse(updatedCourse: any) {
+    return this.http.patch(`${environment.apiUrl}/Course`, {...updatedCourse, schoolId: 'a0694c99-bbe6-42f4-88d5-13ebe5baa849'}, this.httpOptions).pipe(
+      catchError(this.errorHandler)
+    )
+  }
+
+  deleteCourse(courseId: string) {
+    return this.http.delete(`${environment.apiUrl}/Course/${courseId}`, this.httpOptions).pipe(catchError(this.errorHandler))
+  }
+
   errorHandler(error: any) {
     let errorMessage = '';
     if(error.error instanceof ErrorEvent) {

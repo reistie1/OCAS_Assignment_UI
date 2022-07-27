@@ -1,11 +1,11 @@
-<div class="container-fluid col-12 d-flex flex-column justify-content-center p-4">
-  <h3 class="text-center">Courses</h3>
-  <div class= "col-12 d-flex justify-content-end p-2">
-    <button class="col-2 btn btn-secondary" (click)="toggleFn()">Add</button>
+<app-header></app-header>
+  <h3 class="text-center p-2 mt-4">Courses</h3>
+  <app-course-form *ngIf="showAddForm" (OnDataReturned)="GetCourse($event)"></app-course-form>
+  <app-edit-course-form *ngIf="showEditForm" [data]="editValue" (UpdateParent)="GetCourse($event)"></app-edit-course-form>
+  <div class= "col-12 d-flex justify-content-end flex-column">
+    <div class="col-12 d-flex justify-content-end">
+      <button class="btn btn-warning col-1 mb-3 box-shadow" (click)="toggleAddForm(null)">+ Add</button>
+    </div>
+    <app-course-list [list]="data" (DeleteCourseId)="DeleteStudent($event)" (SetCourseToEdit)="UpdateStudent($event)"></app-course-list>
   </div>
-  <div>
 
-  </div>
-  <app-course-form *ngIf="show" (OnDataReturned)="doSomething($event)" (onHide)="toggleAnother($event)"></app-course-form>
-  <app-course-list [toggle]="toggleFn" [list]="data"></app-course-list>
-</div>
