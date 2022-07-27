@@ -1,0 +1,8 @@
+<div class="container-fluid col-12 d-flex flex-column justify-content-center p-4">
+  <h3 class="text-center">Courses</h3>
+  <div class= "col-12 d-flex justify-content-end p-2">
+    <button class="col-2 btn btn-secondary" (click)="toggleFn()">Add</button>
+  </div>
+  <app-course-form *ngIf="show" ></app-course-form>
+  <app-course-list [toggle]="toggleFn"></app-course-list>
+</div>
