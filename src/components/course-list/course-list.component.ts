@@ -8,24 +8,22 @@ import { CourseService } from 'src/services/course.service';
   styleUrls: ['./course-list.component.sass']
 })
 export class CourseListComponent implements OnInit {
-  data: any;
-
-
   @Input() toggle: () => void
   @Output() updateToggle = new EventEmitter();
 
-  constructor(private courseService: CourseService) {}
+  constructor() {}
+
+  @Input('list') data: any[];
+
 
 
   ngOnInit(): void {
-    this.courseService.getCourseList("a0694c99-bbe6-42f4-88d5-13ebe5baa849").subscribe((response: any) => {
-      this.data = response.data
-    });
+
     console.log(this.data);
   }
 
   clickFn() {
-    console.log("called");
+
     this.toggle();
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CourseService } from '../../services/course.service';
 import { Course } from '../../models/Course';
@@ -30,6 +30,10 @@ export class CourseFormComponent implements OnInit {
 
   constructor(private courseService: CourseService) { }
 
+  @Output() OnDataReturned = new EventEmitter<any>();
+  @Output() OnHide = new EventEmitter<any>();
+
+
   ngOnInit(): void {
   }
 
@@ -40,8 +44,11 @@ export class CourseFormComponent implements OnInit {
     newCourse.courseName = courseName;
     newCourse.courseCode = courseCode;
     newCourse.description = description;
-    this.courseService.addCourse(newCourse).subscribe(resp => {
-      console.log(resp);
+    this.courseService.addCourse(newCourse).subscribe((resp: any) => {
+      this.data = resp.data;
+      console.log(resp.data);
+      this.OnDataReturned.emit(resp.data);
+      this.OnHide.emit(false);
     })
   }
 

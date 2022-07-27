@@ -3,6 +3,9 @@
   <div class= "col-12 d-flex justify-content-end p-2">
     <button class="col-2 btn btn-secondary" (click)="toggleFn()">Add</button>
   </div>
-  <app-course-form *ngIf="show" ></app-course-form>
-  <app-course-list [toggle]="toggleFn"></app-course-list>
+  <div>
+
+  </div>
+  <app-course-form *ngIf="show" (OnDataReturned)="doSomething($event)" (onHide)="toggleAnother($event)"></app-course-form>
+  <app-course-list [toggle]="toggleFn" [list]="data"></app-course-list>
 </div>

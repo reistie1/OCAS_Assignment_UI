@@ -14,6 +14,7 @@ import { EditCourseFormComponent } from 'src/components/edit-course-form/edit-co
 import { StudentListComponent } from 'src/components/student-list/student-list.component';
 import { EditStudentFormComponent } from 'src/components/edit-student-form/edit-student-form.component';
 import { StudentFormComponent } from 'src/components/student-form/student-form.component';
+import { StudentContainerComponent } from 'src/components/student-container/student-container.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { StudentFormComponent } from 'src/components/student-form/student-form.c
     EditCourseFormComponent,
     StudentListComponent,
     EditStudentFormComponent,
-    StudentFormComponent
+    StudentFormComponent,
+    StudentContainerComponent
   ],
   imports: [
     BrowserModule,
