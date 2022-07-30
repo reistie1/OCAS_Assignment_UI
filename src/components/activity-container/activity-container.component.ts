@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivityService } from 'src/services/activity.service';
 
 @Component({
@@ -17,14 +16,12 @@ export class ActivityContainerComponent implements OnInit {
   ngOnInit(): void {
     let activityId = localStorage.getItem("activityId") ?? "";
     this.activityName = localStorage.getItem("activityName") ?? "";
-    this.activityService.GetSignedUpActivityList(activityId.toString()).subscribe((response: any) => {
-      this.attendingActivityList = response.data
-    });
+    this.GetSelectedActivityList(activityId.toString());
   }
 
-  GetSelectedActivityList(activityId: any)
+  GetSelectedActivityList(activityId: string)
   {
-    this.activityService.GetSignedUpActivityList(activityId.toString()).subscribe((response: any) => {
+    this.activityService.GetSignedUpActivityList(activityId).subscribe((response: any) => {
       this.attendingActivityList = response.data
     });
   }

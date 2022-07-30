@@ -6,7 +6,6 @@ import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule } from '@ang
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ActivityContainerComponent } from '../activity-container/activity-container.component';
 import { By } from '@angular/platform-browser';
 import { RouterLinkWithHref } from '@angular/router';
 
