@@ -24,9 +24,7 @@ export class ActivityContainerComponent implements OnInit {
 
   GetSelectedActivityList(activityId: any)
   {
-
     this.activityService.GetSignedUpActivityList(activityId.toString()).subscribe((response: any) => {
-      console.log(response.data);
       this.attendingActivityList = response.data
     });
   }

@@ -20,7 +20,6 @@ export class OptionsComponentComponent implements OnInit {
 
   ngOnInit(): void {
     this.activityService.GetActivityList().subscribe((response: any) => {
-      console.log(response)
       this.data = response.data
     });
   }
@@ -28,6 +27,7 @@ export class OptionsComponentComponent implements OnInit {
   onSubmit(data: any)
   {
     const {activityId} = data.form.value;
+    console.log(activityId);
     this.PassSelectedActivity.emit(activityId);
   }
 
