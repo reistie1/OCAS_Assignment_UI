@@ -16,12 +16,12 @@ export class ActivitySignupComponent implements OnInit {
     firstName: new FormControl('', [
       Validators.max(100),
       Validators.required,
-      Validators.pattern("^[a-zA-Z0-9\s.,-_*]+$")
+      Validators.pattern("^[a-zA-Z0-9\\s.,-_*]+$")
     ]),
     lastName: new FormControl('', [
       Validators.max(100),
       Validators.required,
-      Validators.pattern("^[a-zA-Z0-9\s.,-_*]+$")
+      Validators.pattern("^[a-zA-Z0-9\\s.,-_*]+$")
     ]),
     email: new FormControl('', [
       Validators.email,
@@ -30,8 +30,8 @@ export class ActivitySignupComponent implements OnInit {
     activityId: new FormControl(null, [
       Validators.required
     ]),
-    comment: new FormControl('', [
-      Validators.pattern("^[a-zA-Z0-9\s.,-_*]+$")
+    comments: new FormControl('', [
+      Validators.pattern("^[a-zA-Z0-9\\s.,-_*]+$")
     ])
   });
 

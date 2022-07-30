@@ -8,7 +8,8 @@ import { SignedUpActivityListComponent } from 'src/components/signed-up-activity
 import { ActivityContainerComponent } from 'src/components/activity-container/activity-container.component';
 import { NotificationComponentComponent } from '../components/notification-component/notification-component.component';
 import { ActivitySignupComponent } from '../components/activity-signup/activity-signup.component';
-import { ActivityFormContainerComponent } from './activity-form-container/activity-form-container.component';
+import { ActivityFormContainerComponent } from 'src/components/activity-form-container/activity-form-container.component';
+import { OptionsComponentComponent } from 'src/components/options-component/options-component.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { ActivityFormContainerComponent } from './activity-form-container/activi
     ActivityContainerComponent,
     NotificationComponentComponent,
     ActivitySignupComponent,
-    ActivityFormContainerComponent
+    ActivityFormContainerComponent,
+    OptionsComponentComponent
   ],
   imports: [
     BrowserModule,
