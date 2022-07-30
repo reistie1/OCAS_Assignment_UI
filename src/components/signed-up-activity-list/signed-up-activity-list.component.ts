@@ -12,8 +12,6 @@ export class SignedUpActivityListComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
 }

@@ -1,66 +1,76 @@
-<div class="colour-background d-flex justify-content-center p-4">
-  <div class="col-6 card p-2">
-    <h4 class="text-center">Sign Up For An Activity</h4>
-    <form class="form-group" [formGroup]="signupForm" #f="ngForm" (ngSubmit)="onSubmit(f)">
-      <div class="col-12 p-1">
-        <label for="firstName">First Name</label>
-        <input class="form-control mb-2" type="text" id="firstName" name="firstName" formControlName="firstName" required/>
-        <div *ngIf="signupForm.controls['firstName'].invalid && (signupForm.controls['firstName'].dirty || signupForm.controls['firstName'].touched)"
-          class="alert alert-danger">
+<div class="colour-background d-flex justify-content-center p-4 col-12">
+  <div class="col-12 card p-2">
+    <h4 class="text-center p-2">Sign Up For An Activity</h4>
+    <form class="form-group mb-0 p-0" [formGroup]="signupForm" #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <div class="col-12 d-flex p-1">
+        <div class="col-6 p-1">
+          <label for="firstName">First Name</label>
+          <input class="form-control mb-2" type="text" id="firstName" name="firstName" formControlName="firstName" required/>
+          <div *ngIf="signupForm.controls['firstName'].invalid && (signupForm.controls['firstName'].dirty || signupForm.controls['firstName'].touched)"
+            class="text-danger d-flex align-items-center m-0">
 
-          <div *ngIf="signupForm.controls['firstName'].errors?.['required']">
-            First Name is required.
+            <div *ngIf="signupForm.controls['firstName'].errors?.['required']">
+              First Name is required.
+            </div>
+            <div *ngIf="signupForm.controls['firstName'].errors?.['maxlength']">
+              First Name must be at less than 100 characters
+            </div>
+            <div *ngIf="signupForm.controls['firstName'].errors?.['minlength']">
+              First Name must be contain at least 2 characters
+            </div>
+            <div *ngIf="signupForm.controls['firstName'].errors?.['pattern']">
+              First Name contains invalid character
+            </div>
           </div>
-          <div *ngIf="signupForm.controls['firstName'].errors?.['maxlength']">
-            First Name must be at less than 100 characters
-          </div>
-          <div *ngIf="signupForm.controls['firstName'].errors?.['pattern']">
-            First Name contains invalid character
+        </div>
+        <div class="col-6 p-1">
+          <label for="lastName">Last Name</label>
+          <input class="form-control mb-2" type="text" id="lastName" name="lastName" formControlName="lastName" required/>
+          <div *ngIf="signupForm.controls['lastName'].invalid && (signupForm.controls['lastName'].dirty || signupForm.controls['lastName'].touched)"
+            class="text-danger d-flex align-items-center m-0">
+
+            <div *ngIf="signupForm.controls['lastName'].errors?.['required']">
+              Last Name is required.
+            </div>
+            <div *ngIf="signupForm.controls['lastName'].errors?.['maxlength']">
+             Last Name must be at less than 100 characters
+            </div>
+            <div *ngIf="signupForm.controls['lastName'].errors?.['minlength']">
+              Last Name must be contain at least 2 characters
+            </div>
+            <div *ngIf="signupForm.controls['lastName'].errors?.['pattern']">
+             Last Name contains invalid character
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-12 p-1">
-        <label for="lastName">Last Name</label>
-        <input class="form-control mb-2" type="text" id="lastName" name="lastName" formControlName="lastName" required/>
-        <div *ngIf="signupForm.controls['lastName'].invalid && (signupForm.controls['lastName'].dirty || signupForm.controls['lastName'].touched)"
-          class="alert alert-danger">
+      <div class="col-12 d-flex p-1">
+        <div class="col-6 p-1">
+          <label for="email">Email</label>
+          <input class="form-control mb-2" type="text" id="email" name="email" formControlName="email" required/>
+          <div *ngIf="signupForm.controls['email'].invalid && (signupForm.controls['email'].dirty || signupForm.controls['email'].touched)"
+            class="text-danger d-flex align-items-center m-0">
 
-          <div *ngIf="signupForm.controls['lastName'].errors?.['required']">
-            Last Name is required.
-          </div>
-          <div *ngIf="signupForm.controls['lastName'].errors?.['maxlength']">
-           Last Name must be at less than 100 characters
-          </div>
-          <div *ngIf="signupForm.controls['lastName'].errors?.['pattern']">
-           Last Name contains invalid character
+            <div *ngIf="signupForm.controls['email'].errors?.['required']">
+              Email is required.
+            </div>
+            <div *ngIf="signupForm.controls['email'].errors?.['email']">
+              Email is invalid
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-12 p-1">
-        <label for="email">Email</label>
-        <input class="form-control mb-2" type="text" id="email" name="email" formControlName="email" required/>
-        <div *ngIf="signupForm.controls['email'].invalid && (signupForm.controls['email'].dirty || signupForm.controls['email'].touched)"
-          class="alert alert-danger">
+        <div class="col-6 p-1">
+          <label for="email mb-0">Activity</label>
+          <select class="col-12 form-control" formControlName="activityId">
+            <option [ngValue]="null" disabled>Select Activity</option>
+            <option *ngFor="let item of activityList" [ngValue]="item.id">{{item.activityName}}</option>
+          </select>
+          <div *ngIf="signupForm.controls['activityId'].invalid && (signupForm.controls['activityId'].dirty || signupForm.controls['activityId'].touched)"
+            class="text-danger d-flex align-items-center m-0">
 
-          <div *ngIf="signupForm.controls['email'].errors?.['required']">
-            Email is required.
-          </div>
-          <div *ngIf="signupForm.controls['email'].errors?.['email']">
-            Email is invalid
-          </div>
-        </div>
-      </div>
-      <div class="col-12 p-1">
-        <label for="email mb-0">Activity</label>
-        <select class="col-12 form-control" formControlName="activityId">
-          <option [ngValue]="null" disabled>Select Activity</option>
-          <option *ngFor="let item of activityList" [ngValue]="item.id">{{item.activityName}}</option>
-        </select>
-        <div *ngIf="signupForm.controls['activityId'].invalid && (signupForm.controls['activityId'].dirty || signupForm.controls['activityId'].touched)"
-          class="alert alert-danger">
-
-          <div *ngIf="signupForm.controls['activityId'].errors?.['required']">
-            Activity selection is required.
+            <div *ngIf="signupForm.controls['activityId'].errors?.['required']">
+              Activity selection is required.
+            </div>
           </div>
         </div>
       </div>
@@ -68,14 +78,14 @@
         <label for="comments">Comment</label>
         <textarea class="form-control mb-2" type="text" id="comments" name="comments" rows="5" cols="10" formControlName="comments" required></textarea>
         <div *ngIf="signupForm.controls['comments'].invalid && (signupForm.controls['comments'].dirty || signupForm.controls['comments'].touched)"
-          class="alert alert-danger">
+          class="text-danger d-flex align-items-center m-0">
 
           <div *ngIf="signupForm.controls['comments'].errors?.['pattern']">
             Comment contains invalid value
           </div>
         </div>
       </div>
-      <div class="col-12 d-flex justify-content-end">
+      <div class="col-12 d-flex justify-content-end p-0">
         <button class="col-3 btn btn-primary m-1" type="submit" [disabled]="signupForm.errors == null ? false : true">Sign Up</button>
       </div>
     </form>

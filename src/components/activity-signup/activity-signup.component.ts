@@ -15,13 +15,15 @@ export class ActivitySignupComponent implements OnInit {
   signupForm = this.formBuilder.group({
     firstName: new FormControl('', [
       Validators.max(100),
+      Validators.min(2),
       Validators.required,
-      Validators.pattern("^[a-zA-Z0-9\\s.,-_*]+$")
+      Validators.pattern("^[a-zA-Z\\s.,-_*]*$")
     ]),
     lastName: new FormControl('', [
       Validators.max(100),
+      Validators.min(2),
       Validators.required,
-      Validators.pattern("^[a-zA-Z0-9\\s.,-_*]+$")
+      Validators.pattern("^[a-zA-Z\\s.,-_*]+$")
     ]),
     email: new FormControl('', [
       Validators.email,

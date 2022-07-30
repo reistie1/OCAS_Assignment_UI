@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { throwError} from 'rxjs';
 import { environment } from '../environments/environment';
-import { activitySignup } from '../models/activitySignup';
 
 @Injectable({ providedIn: 'root' })
 

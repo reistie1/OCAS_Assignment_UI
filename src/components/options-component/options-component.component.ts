@@ -1,5 +1,5 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormBuilder, FormControl } from '@angular/forms';
 import { ActivityService } from 'src/services/activity.service';
 
 @Component({
@@ -20,6 +20,7 @@ export class OptionsComponentComponent implements OnInit {
 
   ngOnInit(): void {
     this.activityService.GetActivityList().subscribe((response: any) => {
+      console.log(response)
       this.data = response.data
     });
   }
