@@ -17,11 +17,6 @@ export class ActivityFormContainerComponent implements OnInit {
   {
     this.errors = data;
     this.isError = true;
-    setTimeout(() => {
-      this.isError = false;
-    }, 2000)
+    setTimeout(() => { this.isError = false; }, 2000)
   }
-
-
-
 }

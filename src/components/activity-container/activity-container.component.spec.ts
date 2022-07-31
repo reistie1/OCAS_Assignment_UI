@@ -5,17 +5,19 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { ActivityService } from 'src/services/activity.service';
 
 import { ActivityContainerComponent } from './activity-container.component';
+import { activitySignup } from '../../models/activitySignup';
+import { activity } from '../../models/activity';
 
 describe('ActivityContainerComponent', () => {
   let component: ActivityContainerComponent;
   let fixture: ComponentFixture<ActivityContainerComponent>;
   let activityService: ActivityService;
-  let activitiesList = new BehaviorSubject<{data: [{id: number, activityName: string}]}>({data:[{id: 1, activityName: 'tennis'}]});
-  let peopleActivityList = new BehaviorSubject<{data: [{id: number, firstName: string, lastName: string, email: string, activityId: string},{id: number, firstName: string, lastName: string, email: string, activityId: string},{id: number, firstName: string, lastName: string, email: string, activityId: string},{id: number, firstName: string, lastName: string, email: string, activityId: string}]}>({data:[
-    {id: 1, firstName: 'johnny', lastName: 'smith', email: 'test@info.com', activityId: '1'},
-    {id: 2, firstName: 'albert', lastName: 'hoffman', email: 'test1@info.com', activityId: '1'},
-    {id: 3, firstName: 'roger', lastName: 'rabbit', email: 'test3@info.com', activityId: '1'},
-    {id: 4, firstName: 'taylor', lastName: 'craig', email: 'test4@info.com', activityId: '1'}]
+  let activitiesList = new BehaviorSubject<{data: Array<activity>}>({data:[{id: '1', activityName: 'tennis', description: "a friendly game of tennis"}]});
+  let peopleActivityList = new BehaviorSubject<{data: Array<activitySignup>}>({data:[
+    {id: '1', firstName: 'johnny', lastName: 'smith', email: 'test@info.com', activityId: '1', gender: 'male', signedUpDate: '2022-04-20', comments: ''},
+    {id: '2', firstName: 'albert', lastName: 'hoffman', email: 'test1@info.com', activityId: '1', gender: 'male', signedUpDate: '2022-04-20', comments: 'looking forward to it'},
+    {id: '3', firstName: 'roger', lastName: 'rabbit', email: 'test3@info.com', activityId: '1', gender: 'male', signedUpDate: '2022-04-22', comments: 'should be a blast!'},
+    {id: '4', firstName: 'taylor', lastName: 'craig', email: 'test4@info.com', activityId: '1', gender: 'female', signedUpDate: '2022-04-21', comments: "can't wait"}]
   });
 
 
@@ -31,10 +33,10 @@ describe('ActivityContainerComponent', () => {
       set: {
         providers: [
           { provide: ActivityService, useValue: {
-            GetSignedUpActivityList(): Observable<{data: [{id: number, firstName: string, lastName: string, email: string, activityId: string},{id: number, firstName: string, lastName: string, email: string, activityId: string},{id: number, firstName: string, lastName: string, email: string, activityId: string},{id: number, firstName: string, lastName: string, email: string, activityId: string}]}> {
+            GetSignedUpActivityList(): Observable<{data: Array<activitySignup>}> {
               return peopleActivityList;
             },
-            GetActivityList(): Observable<{data: [{id: number, activityName: string}]}> {
+            GetActivityList(): Observable<{data: Array<activity>}> {
               return activitiesList;
             }
           }},
@@ -70,12 +72,12 @@ describe('ActivityContainerComponent', () => {
     expect(localStorage.getItem).toHaveBeenCalledTimes(2);
     expect(component.activityName).toMatch("Tennis");
     expect(component.attendingActivityList).toEqual([
-      {id: 1, firstName: 'johnny', lastName: 'smith', email: 'test@info.com', activityId: '1'},
-      {id: 2, firstName: 'albert', lastName: 'hoffman', email: 'test1@info.com', activityId: '1'},
-      {id: 3, firstName: 'roger', lastName: 'rabbit', email: 'test3@info.com', activityId: '1'},
-      {id: 4, firstName: 'taylor', lastName: 'craig', email: 'test4@info.com', activityId: '1'}]);
+      {id: '1', firstName: 'johnny', lastName: 'smith', email: 'test@info.com', activityId: '1', gender: 'male', signedUpDate: '2022-04-20', comments: ''},
+      {id: '2', firstName: 'albert', lastName: 'hoffman', email: 'test1@info.com', activityId: '1', gender: 'male', signedUpDate: '2022-04-20', comments: 'looking forward to it'},
+      {id: '3', firstName: 'roger', lastName: 'rabbit', email: 'test3@info.com', activityId: '1', gender: 'male', signedUpDate: '2022-04-22', comments: 'should be a blast!'},
+      {id: '4', firstName: 'taylor', lastName: 'craig', email: 'test4@info.com', activityId: '1', gender: 'female', signedUpDate: '2022-04-21', comments: "can't wait"}]);
     expect(component.activitiesList).toHaveSize(1);
-    expect(component.activitiesList).toEqual([({ id: 1, activityName: 'tennis' })]);
+    expect(component.activitiesList).toEqual([{id: '1', activityName: 'tennis', description: "a friendly game of tennis"}]);
     expect(component.UpdateSelectedActivity).toHaveBeenCalledTimes(1);
   });
 });

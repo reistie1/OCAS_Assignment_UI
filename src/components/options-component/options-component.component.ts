@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { ActivityService } from 'src/services/activity.service';
+import { activity } from '../../models/activity';
 
 @Component({
   selector: 'app-options-component',
@@ -10,7 +11,7 @@ import { ActivityService } from 'src/services/activity.service';
 
 
 export class OptionsComponentComponent implements OnInit {
-  data: any[]
+  data: activity[]
   @Output() PassSelectedActivity = new EventEmitter<any>();
 
   constructor(private formBuilder: FormBuilder, private activityService: ActivityService) { }
@@ -21,6 +22,9 @@ export class OptionsComponentComponent implements OnInit {
   ngOnInit(): void {
     this.activityService.GetActivityList().subscribe((response: any) => {
       this.data = response.data
+    },
+    (e) => {
+      console.log(e);
     });
   }
 

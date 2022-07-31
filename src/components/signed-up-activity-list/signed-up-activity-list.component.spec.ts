@@ -18,7 +18,7 @@ describe('SignedUpActivityListComponent', () => {
     fixture = TestBed.createComponent(SignedUpActivityListComponent);
     component = fixture.componentInstance;
     component.name = "Tennis";
-    component.people = [{id: 1, firstName: 'josh', lastName: 'reist', activityId: 1, comments: 'a nice description goes here', email: 'test@info.com', gender: 'Male', signedUpDate:'2022-01-23'}];
+    component.people = [{id: '1', firstName: 'josh', lastName: 'reist', activityId: '1', comments: 'a nice description goes here', email: 'test@info.com', gender: 'Male', signedUpDate:'2022-01-23'}];
     tableRowEl = fixture.debugElement.query(By.css('tbody'));
     titleEl = fixture.debugElement.query(By.css('h1'));
     fixture.detectChanges();

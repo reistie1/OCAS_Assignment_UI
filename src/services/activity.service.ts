@@ -4,6 +4,8 @@ import { throwError} from 'rxjs';
 import { environment } from '../environments/environment';
 import { requestParameters } from '../models/requestParameters';
 import { activitySignup } from '../models/activitySignup';
+import { response } from '../models/response';
+import { pagedResponse } from '../models/pagedResponse';
 
 @Injectable({ providedIn: 'root' })
 
@@ -21,17 +23,18 @@ export class ActivityService {
 
   GetActivityList()
   {
-    return this.http.get(`${environment.apiUrl}/Activity`, this.httpOptions);
+    return this.http.get<response>(`${environment.apiUrl}/Activity`, this.httpOptions)
   }
 
   RegisterForActivity(signUpRequest: activitySignup)
   {
-    return this.http.post(`${environment.apiUrl}/Activity`, signUpRequest, this.httpOptions);
+    return this.http.post<response>(`${environment.apiUrl}/Activity`, signUpRequest, this.httpOptions);
   }
 
   GetSignedUpActivityList(activityId: string, requestParams: requestParameters)
   {
-    return this.http.get(`${environment.apiUrl}/Activity/${activityId}?pageNumber=${requestParams.pageNumber}&pageSize=${requestParams.pageSize}`, this.httpOptions);
+    console.log("called")
+    return this.http.get<pagedResponse>(`${environment.apiUrl}/Activity/${activityId}?pageNumber=${requestParams.pageNumber}&pageSize=${requestParams.pageSize}`, this.httpOptions);
   }
 
 

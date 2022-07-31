@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { requestParameters } from 'src/models/requestParameters';
 import { ActivityService } from 'src/services/activity.service';
+import { activity } from '../../models/activity';
+import { activitySignup } from '../../models/activitySignup';
 
 @Component({
   selector: 'app-activity-container',
@@ -11,10 +13,10 @@ export class ActivityContainerComponent implements OnInit {
 
   constructor(private activityService: ActivityService) { }
   activityName: string;
-  attendingActivityList: any[];
-  activitiesList: any[];
+  attendingActivityList: activitySignup[];
+  activitiesList: activity[];
   activityId: string
-  activity: any
+  activity: activity;
   pageNumber: number = 1;
   pageSize: number = 50;
 
@@ -34,14 +36,22 @@ export class ActivityContainerComponent implements OnInit {
     this.activityService.GetSignedUpActivityList(activityId, new requestParameters(this.pageNumber, this.pageSize)).subscribe((response: any) => {
       this.attendingActivityList = response.data
       this.UpdateSelectedActivity(activityId)
+    },
+    (e) => {
+      console.log(e);
     });
   }
 
   GetPagedActivityList(page: number)
   {
     let requestedPage = page <= 0 ? 1 : page;
+    console.log(page)
     this.activityService.GetSignedUpActivityList(this.activityId, new requestParameters(requestedPage, this.pageSize)).subscribe((response: any) => {
+      console.log(response)
       this.attendingActivityList = response.data
+    },
+    (e) => {
+      console.log(e);
     });
   }
 
@@ -56,7 +66,6 @@ export class ActivityContainerComponent implements OnInit {
         this.activityName = activity[0].activityName
         this.activityId = activity[0].id
       }
-
     }
   }
 

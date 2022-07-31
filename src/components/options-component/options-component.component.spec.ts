@@ -8,6 +8,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import { By } from '@angular/platform-browser';
 import { RouterLinkWithHref } from '@angular/router';
+import { activity } from '../../models/activity';
 
 describe('OptionsComponentComponent', () => {
   let component: OptionsComponentComponent;
@@ -15,7 +16,7 @@ describe('OptionsComponentComponent', () => {
   let selectElement: HTMLSelectElement;
   let activityService: ActivityService;
   let formBuilder: FormBuilder;
-  let scaleWidthSubject = new BehaviorSubject<{data: [{id: number, activityName: string}]}>({data:[{id: 1, activityName: 'tennis'}]});
+  let activitiesList = new BehaviorSubject<{data: Array<activity>}>({data: [{id: '1', activityName: 'tennis', description: "a friendly game of tennis"}]});
 
 
   beforeEach(async () => {
@@ -31,8 +32,8 @@ describe('OptionsComponentComponent', () => {
       set: {
         providers: [
           { provide: ActivityService, useValue: {
-            GetActivityList(): Observable<{data: [{id: number, activityName: string}]}> {
-              return scaleWidthSubject;
+            GetActivityList(): Observable<{data: Array<activity>}> {
+              return activitiesList;
             }
           }},
         ]
@@ -52,7 +53,7 @@ describe('OptionsComponentComponent', () => {
   });
 
     it('data its successfully fetched for activity service', () => {
-      expect(component.data).toEqual([{id: 1, activityName: 'tennis'}]);
+      expect(component.data).toEqual([{id: '1', activityName: 'tennis', description: "a friendly game of tennis"}]);
     });
 
     it('calls on submit button when form submitted', () => {

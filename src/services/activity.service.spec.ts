@@ -28,7 +28,8 @@ describe('ActivityService', () => {
         { id: 2, activityName: 'tennis' },
         { id: 3, activityName: 'football' },
       ],
-      errors: null
+      errors: [],
+      message: ""
     };
 
     service.GetActivityList().subscribe((res) => {
@@ -43,12 +44,12 @@ describe('ActivityService', () => {
 
   it('RegisterForActivity() returns success response', () => {
     service.RegisterForActivity({id: '', firstName: 'johnny', lastName: 'rogers', comments: "sample comment", email: 'test@test.com', gender: 'male', signedUpDate: '2022-02-12', 'activityId': '1'}).subscribe((res) => {
-      expect(res).toEqual({data: true, succeeded: true, errors: null});
+      expect(res).toEqual({data: true, succeeded: true, errors: [], message: ""});
     });
 
     const req = httpMock.expectOne('https://localhost:7280/api/v1/Activity');
     expect(req.request.method).toBe('POST');
-    req.flush({ data: true, succeeded: true, errors: null });
+    req.flush({ data: true, succeeded: true, errors: [], message: "" });
   });
 
   it('GetSignedUpActivityList() returns signed up list of people for activity', () => {
@@ -60,7 +61,8 @@ describe('ActivityService', () => {
         {id: 2, firstName: 'roger', lastName: 'rabbit', comments: 'looking forward to it', activityId: 1, email: 'test2@info.com'},
         {id: 3, firstName: 'lisa', lastName: 'sherbert', comments: '', activityId: 1, email: 'test3@info.com'}
       ],
-      errors: null
+      errors: [],
+      message: ""
     }
 
     service.GetSignedUpActivityList('1', new requestParameters(1, 50)).subscribe((res: any) => {

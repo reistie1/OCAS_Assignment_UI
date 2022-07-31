@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivityService } from 'src/services/activity.service';
+import { activity } from '../../models/activity';
 
 @Component({
   selector: 'app-activity-signup',
@@ -8,7 +9,7 @@ import { ActivityService } from 'src/services/activity.service';
   styleUrls: ['./activity-signup.component.sass']
 })
 export class ActivitySignupComponent implements OnInit {
-  activityList: any[];
+  activityList: activity[];
   @Output() PassError = new EventEmitter<any>();
 
 
@@ -40,7 +41,7 @@ export class ActivitySignupComponent implements OnInit {
     ]),
     gender: new FormControl('', [
       Validators.required,
-      Validators.pattern("^[a-zA-Z]+$")
+      Validators.pattern("^[a-zA-Z]*$")
     ])
   });
 
@@ -48,6 +49,9 @@ export class ActivitySignupComponent implements OnInit {
   ngOnInit(): void {
     this.activityService.GetActivityList().subscribe((response: any) => {
       this.activityList = response.data;
+    },
+    (e) => {
+      console.log(e);
     });
   }
 
@@ -69,6 +73,9 @@ export class ActivitySignupComponent implements OnInit {
         {
           this.redirect();
         }
+      },
+      (e) => {
+        console.log(e);
       })
     }
   }
