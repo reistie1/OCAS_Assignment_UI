@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { throwError} from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from '../environments/environment';
+import { requestParameters } from '../models/requestParameters';
 
 @Injectable({ providedIn: 'root' })
 
@@ -27,22 +29,19 @@ export class ActivityService {
     return this.http.post(`${environment.apiUrl}/Activity`, signUpRequest, this.httpOptions);
   }
 
-  GetSignedUpActivityList(activityId: string)
+  GetSignedUpActivityList(activityId: string, requestParams: requestParameters)
   {
-    return this.http.get(`${environment.apiUrl}/Activity/${activityId}`, this.httpOptions);
+    return this.http.get(`${environment.apiUrl}/Activity/${activityId}?pageNumber=${requestParams.pageNumber}&pageSize=${requestParams.pageSize}`, this.httpOptions);
   }
 
 
   errorHandler(error: any) {
     let errorMessage = '';
     if(error.error instanceof ErrorEvent) {
-      // Get client-side error
-      errorMessage = error.error.message;
+     errorMessage = error.error.message;
     } else {
-      // Get server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-    console.log(errorMessage);
     return throwError(errorMessage);
  }
 

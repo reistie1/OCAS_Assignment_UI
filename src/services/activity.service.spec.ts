@@ -1,6 +1,7 @@
 import { getTestBed, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ActivityService } from './activity.service';
+import { requestParameters } from 'src/models/requestParameters';
 
 describe('ActivityService', () => {
   let injector: TestBed;
@@ -62,12 +63,12 @@ describe('ActivityService', () => {
       errors: null
     }
 
-    service.GetSignedUpActivityList('1').subscribe((res: any) => {
+    service.GetSignedUpActivityList('1', new requestParameters(1, 50)).subscribe((res: any) => {
       expect(res).toEqual(signUpListResponse);
       expect(res.data).toHaveSize(3);
     });
 
-    const req = httpMock.expectOne('https://localhost:7280/api/v1/Activity/1');
+    const req = httpMock.expectOne('https://localhost:7280/api/v1/Activity/1?pageNumber=1&pageSize=50');
     expect(req.request.method).toBe('GET');
     req.flush(signUpListResponse);
   });

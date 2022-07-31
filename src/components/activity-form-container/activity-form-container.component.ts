@@ -6,10 +6,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./activity-form-container.component.sass']
 })
 export class ActivityFormContainerComponent implements OnInit {
+  errors: string[];
+  isError: boolean = false;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  UpdateErrors(data: string[])
+  {
+    this.errors = data;
+    this.isError = true;
+    setTimeout(() => {
+      this.isError = false;
+    }, 2000)
   }
+
+
 
 }

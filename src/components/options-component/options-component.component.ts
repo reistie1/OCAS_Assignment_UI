@@ -27,7 +27,6 @@ export class OptionsComponentComponent implements OnInit {
   onSubmit(data: any)
   {
     const {activityId} = data.form.value;
-    console.log(activityId);
     this.PassSelectedActivity.emit(activityId);
   }
 

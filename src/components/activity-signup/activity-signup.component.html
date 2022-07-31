@@ -74,7 +74,7 @@
           </div>
         </div>
       </div>
-      <div class="col-12 p-1">
+      <div>
         <label for="comments">Comment</label>
         <textarea class="form-control mb-2" type="text" id="comments" name="comments" rows="5" cols="10" formControlName="comments" required></textarea>
         <div *ngIf="signupForm.controls['comments'].invalid && (signupForm.controls['comments'].dirty || signupForm.controls['comments'].touched)"
@@ -84,6 +84,21 @@
             Comment contains invalid value
           </div>
         </div>
+      </div>
+      <div>
+        <label for="gender">Gender</label>
+        <div class="col-6">
+          <input class="col-2" type="radio" value="Male" formControlName="gender"> Male
+          <input class="col-2" type="radio" value="Female" formControlName="gender"> Female
+          <div *ngIf="signupForm.controls['gender'].invalid && (signupForm.controls['gender'].dirty || signupForm.controls['gender'].touched)"
+            class="text-danger d-flex align-items-center m-0">
+
+            <div *ngIf="signupForm.controls['gender'].errors?.['pattern']">
+              Gender selection is required
+            </div>
+          </div>
+        </div>
+
       </div>
       <div class="col-12 d-flex justify-content-end p-0">
         <button class="col-3 btn btn-primary m-1" type="submit" [disabled]="signupForm.errors == null ? false : true">Sign Up</button>

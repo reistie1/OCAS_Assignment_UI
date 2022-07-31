@@ -7,6 +7,8 @@
           <th>First Name</th>
           <th>Last Name</th>
           <th>Email</th>
+          <th>Gender</th>
+          <th>Sign Up Date</th>
           <th>Comment</th>
         </tr>
       </thead>
@@ -15,9 +17,17 @@
           <td>{{item.firstName}}</td>
           <td>{{item.lastName}}</td>
           <td>{{item.email}}</td>
+          <td>{{item.gender}}</td>
+          <td>{{item.signedUpDate}}</td>
           <td>{{item.comments}}</td>
         </tr>
       </tbody>
+      <tfoot class="col-9">
+        <tr class="d-flex justify-content-end col-9">
+          <td class="footer-option col-6" (click)="BackPageNumber(pageNumber)"> Back </td>
+          <td class="footer-option col-6" (click)="NextPageNumber(pageNumber)"> Next </td>
+        </tr>
+      </tfoot>
     </table>
   </div>
 

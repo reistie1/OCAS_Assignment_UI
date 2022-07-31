@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivityService } from '../../services/activity.service';
 
 @Component({
@@ -8,10 +8,26 @@ import { ActivityService } from '../../services/activity.service';
 })
 export class SignedUpActivityListComponent implements OnInit {
   name: string;
+  public pageSize: number = 50;
   @Input("attending") people: any[];
+  @Input("pageNumber") pageNumber: number;
+  @Output() NextPage = new EventEmitter<any>();
+  @Output() PrevPage = new EventEmitter<any>();
 
   constructor() { }
 
   ngOnInit(): void {}
+
+  NextPageNumber(page: number)
+  {
+    console.log(++page);
+    this.NextPage.emit(page);
+  }
+
+  BackPageNumber(page: number)
+  {
+    console.log(--page);
+    this.PrevPage.emit(page);
+  }
 
 }

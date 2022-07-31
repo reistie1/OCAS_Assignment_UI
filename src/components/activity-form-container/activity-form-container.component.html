@@ -1,7 +1,8 @@
 <div class="background d-flex align-items-center flex-column justify-content-center">
   <h2 class="text-center p-1 pt-4"><b>Activity Sign Up</b></h2>
   <div class="col-7">
-    <app-activity-signup></app-activity-signup>
+    <app-register-errors [errors]="errors" *ngIf="isError"></app-register-errors>
+    <app-activity-signup (PassError)="UpdateErrors($event)"></app-activity-signup>
   </div>
 </div>
 
