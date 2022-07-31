@@ -1,5 +1,4 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { ActivityService } from '../../services/activity.service';
 
 @Component({
   selector: 'app-signed-up-activity-list',

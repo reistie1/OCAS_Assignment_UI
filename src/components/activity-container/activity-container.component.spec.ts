@@ -48,7 +48,7 @@ describe('ActivityContainerComponent', () => {
     fixture.detectChanges();
   });
 
-  it('gets values from localStorage', () => {
+  it('components gets activity list and updates values', () => {
     spyOn(window.localStorage, 'getItem').and.callFake(function() {
 			var param = arguments[0];
 
@@ -75,6 +75,7 @@ describe('ActivityContainerComponent', () => {
       {id: 3, firstName: 'roger', lastName: 'rabbit', email: 'test3@info.com', activityId: '1'},
       {id: 4, firstName: 'taylor', lastName: 'craig', email: 'test4@info.com', activityId: '1'}]);
     expect(component.activitiesList).toHaveSize(1);
+    expect(component.activitiesList).toEqual([({ id: 1, activityName: 'tennis' })]);
     expect(component.UpdateSelectedActivity).toHaveBeenCalledTimes(1);
   });
 });

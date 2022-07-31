@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { throwError} from 'rxjs';
-import { map } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 import { requestParameters } from '../models/requestParameters';
+import { activitySignup } from '../models/activitySignup';
 
 @Injectable({ providedIn: 'root' })
 
@@ -24,7 +24,7 @@ export class ActivityService {
     return this.http.get(`${environment.apiUrl}/Activity`, this.httpOptions);
   }
 
-  RegisterForActivity(signUpRequest: any)
+  RegisterForActivity(signUpRequest: activitySignup)
   {
     return this.http.post(`${environment.apiUrl}/Activity`, signUpRequest, this.httpOptions);
   }
@@ -37,9 +37,11 @@ export class ActivityService {
 
   errorHandler(error: any) {
     let errorMessage = '';
+
     if(error.error instanceof ErrorEvent) {
      errorMessage = error.error.message;
-    } else {
+    }
+    else {
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
     return throwError(errorMessage);

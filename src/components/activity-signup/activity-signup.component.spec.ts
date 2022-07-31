@@ -113,8 +113,8 @@ describe('ActivitySignupComponent', () => {
     expect(errors['required']).toBeTruthy();
   });
 
-  it('gender validity of patter', () => {
-    let email = component.signupForm.controls['gender'].setValue("Male123");
+  it('gender validity of pattern', () => {
+    let gender = component.signupForm.controls['gender'].setValue("Male123");
     let errors = component.signupForm.controls['gender'].errors ?? {}
 
     expect(errors['pattern']).toBeTruthy();
@@ -177,6 +177,4 @@ describe('ActivitySignupComponent', () => {
     expect(selectEl.options[1].value).toMatch('1');
     expect(window.localStorage.setItem).toHaveBeenCalledTimes(2);
   });
-
-
 });

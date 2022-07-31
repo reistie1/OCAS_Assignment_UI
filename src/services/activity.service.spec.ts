@@ -42,7 +42,7 @@ describe('ActivityService', () => {
   });
 
   it('RegisterForActivity() returns success response', () => {
-    service.RegisterForActivity({firstName: 'johnny', lastName: 'rogers', comment: "sample comment", email: 'test@test.com'}).subscribe((res) => {
+    service.RegisterForActivity({id: '', firstName: 'johnny', lastName: 'rogers', comments: "sample comment", email: 'test@test.com', gender: 'male', signedUpDate: '2022-02-12', 'activityId': '1'}).subscribe((res) => {
       expect(res).toEqual({data: true, succeeded: true, errors: null});
     });
 

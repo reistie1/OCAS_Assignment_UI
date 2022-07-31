@@ -31,16 +31,15 @@ describe('SignedUpActivityListComponent', () => {
 
   it('shows the correct amount of input rows', () => {
     expect(tableRowEl.children).toHaveSize(1);
-    expect(tableRowEl.children[0].childNodes).toHaveSize(6);
+    expect(tableRowEl.children[0].childNodes).toHaveSize(5);
   });
 
   it('row data in displayed correct data according to input', () => {
     expect(tableRowEl.children[0].children[0].nativeElement.innerHTML).toMatch('josh');
     expect(tableRowEl.children[0].children[1].nativeElement.innerHTML).toMatch('reist');
     expect(tableRowEl.children[0].children[2].nativeElement.innerHTML).toMatch('test@info.com');
-    expect(tableRowEl.children[0].children[3].nativeElement.innerHTML).toMatch('Male');
-    expect(tableRowEl.children[0].children[4].nativeElement.innerHTML).toMatch('2022-01-23');
-    expect(tableRowEl.children[0].children[5].nativeElement.innerHTML).toMatch('a nice description goes here');
+    expect(tableRowEl.children[0].children[3].nativeElement.innerHTML).toMatch('2022-01-23');
+    expect(tableRowEl.children[0].children[4].nativeElement.innerHTML).toMatch('a nice description goes here');
   });
 
   it('fires next and back functions', () => {
@@ -54,6 +53,5 @@ describe('SignedUpActivityListComponent', () => {
     expect(buttonEl).toHaveSize(2);
     expect(component.NextPageNumber).toHaveBeenCalled();
     expect(component.BackPageNumber).toHaveBeenCalled();
-
   });
 });

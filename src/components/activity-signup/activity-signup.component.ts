@@ -1,4 +1,3 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivityService } from 'src/services/activity.service';
@@ -17,16 +16,16 @@ export class ActivitySignupComponent implements OnInit {
 
   signupForm = this.formBuilder.group({
     firstName: new FormControl('', [
-      Validators.maxLength(100),
+      Validators.maxLength(50),
       Validators.minLength(2),
       Validators.required,
-      Validators.pattern("^[a-zA-Z\\s.,-_*]*$")
+      Validators.pattern("^[a-zA-Z*\\s.,-]*$")
     ]),
     lastName: new FormControl('', [
-      Validators.maxLength(100),
+      Validators.maxLength(50),
       Validators.minLength(2),
       Validators.required,
-      Validators.pattern("^[a-zA-Z\\s.,-_*]+$")
+      Validators.pattern("^[a-zA-Z*\\s.,-]*$")
     ]),
     email: new FormControl('', [
       Validators.email,
@@ -36,7 +35,8 @@ export class ActivitySignupComponent implements OnInit {
       Validators.required
     ]),
     comments: new FormControl('', [
-      Validators.pattern("^[a-zA-Z0-9\\s.,-_*]+$")
+      Validators.pattern("^[a-zA-Z0-9\\s.,!'*-]*$"),
+      Validators.maxLength(100)
     ]),
     gender: new FormControl('', [
       Validators.required,
@@ -58,17 +58,19 @@ export class ActivitySignupComponent implements OnInit {
     localStorage.setItem("activityId", selectedActivity.id);
     localStorage.setItem("activityName", selectedActivity.activityName);
 
-
-    this.activityService.RegisterForActivity({...input.form.value, comments: comments}).subscribe((response: any) => {
-      if(response.Succeeded == false)
-      {
-        this.PassError.emit(response.Errors);
-      }
-      else
-      {
-        this.redirect();
-      }
-    })
+    if(selectedActivity.id !== undefined)
+    {
+      this.activityService.RegisterForActivity({...input.form.value, comments: comments}).subscribe((response: any) => {
+        if(response.Succeeded == false)
+        {
+          this.PassError.emit(response.Errors);
+        }
+        else
+        {
+          this.redirect();
+        }
+      })
+    }
   }
 
   redirect(){

@@ -33,7 +33,6 @@ export class ActivityContainerComponent implements OnInit {
   {
     this.activityService.GetSignedUpActivityList(activityId, new requestParameters(this.pageNumber, this.pageSize)).subscribe((response: any) => {
       this.attendingActivityList = response.data
-      this.activityId = activityId;
       this.UpdateSelectedActivity(activityId)
     });
   }

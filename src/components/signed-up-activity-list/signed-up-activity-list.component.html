@@ -1,13 +1,12 @@
 <h1 class="text-center p-2 list-background">{{name}}</h1>
 <div class="col-12 d-flex justify-content-center flex-column align-items-center p-0 mb-0">
   <div class="col-11 p-0 m-0 box-shadow">
-    <table class="table mb-0">
+    <table class="table mb-0 table-striped">
       <thead>
         <tr>
           <th>First Name</th>
           <th>Last Name</th>
           <th>Email</th>
-          <th>Gender</th>
           <th>Sign Up Date</th>
           <th>Comment</th>
         </tr>
@@ -17,13 +16,12 @@
           <td>{{item.firstName}}</td>
           <td>{{item.lastName}}</td>
           <td>{{item.email}}</td>
-          <td>{{item.gender}}</td>
-          <td>{{item.signedUpDate}}</td>
-          <td>{{item.comments}}</td>
+          <td>{{item.signedUpDate.slice(0,10)}}</td>
+          <td class="col-6">{{item.comments}}</td>
         </tr>
       </tbody>
       <tfoot class="col-9">
-        <tr class="d-flex justify-content-end col-9">
+        <tr class="d-flex justify-content-end col-12">
           <td class="footer-option col-6" (click)="BackPageNumber(pageNumber)"> Back </td>
           <td class="footer-option col-6" (click)="NextPageNumber(pageNumber)"> Next </td>
         </tr>

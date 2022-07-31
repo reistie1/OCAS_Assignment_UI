@@ -5,5 +5,7 @@ export class activitySignup
   lastName: string
   email: string
   comments: string
+  gender: string
+  signedUpDate: string
   activityId: string
 }

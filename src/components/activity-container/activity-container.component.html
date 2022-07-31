@@ -1,6 +1,6 @@
-<div class="background">
+<div class="container-fluid background-wrapper">
   <h2 class="text-center p-1 pt-4">{{activityName}}</h2>
-  <div class="background">
+  <div class="list">
     <app-options-component (PassSelectedActivity)="GetSelectedActivityList($event)"></app-options-component>
     <app-signed-up-activity-list [attending]="attendingActivityList" [pageNumber]="pageNumber" (NextPage)="GetPagedActivityList($event)" (PrevPage)="GetPagedActivityList($event)"></app-signed-up-activity-list>
   </div>

@@ -5,7 +5,7 @@
       <div class="col-12 d-flex p-1">
         <div class="col-6 p-1">
           <label for="firstName">First Name</label>
-          <input class="form-control mb-2" type="text" id="firstName" name="firstName" formControlName="firstName" required/>
+          <input class="form-control mb-2" type="text" id="firstName" name="firstName" formControlName="firstName"/>
           <div *ngIf="signupForm.controls['firstName'].invalid && (signupForm.controls['firstName'].dirty || signupForm.controls['firstName'].touched)"
             class="text-danger d-flex align-items-center m-0">
 
@@ -25,7 +25,7 @@
         </div>
         <div class="col-6 p-1">
           <label for="lastName">Last Name</label>
-          <input class="form-control mb-2" type="text" id="lastName" name="lastName" formControlName="lastName" required/>
+          <input class="form-control mb-2" type="text" id="lastName" name="lastName" formControlName="lastName"/>
           <div *ngIf="signupForm.controls['lastName'].invalid && (signupForm.controls['lastName'].dirty || signupForm.controls['lastName'].touched)"
             class="text-danger d-flex align-items-center m-0">
 
@@ -47,7 +47,7 @@
       <div class="col-12 d-flex p-1">
         <div class="col-6 p-1">
           <label for="email">Email</label>
-          <input class="form-control mb-2" type="text" id="email" name="email" formControlName="email" required/>
+          <input class="form-control mb-2" type="text" id="email" name="email" formControlName="email"/>
           <div *ngIf="signupForm.controls['email'].invalid && (signupForm.controls['email'].dirty || signupForm.controls['email'].touched)"
             class="text-danger d-flex align-items-center m-0">
 
@@ -76,11 +76,14 @@
       </div>
       <div>
         <label for="comments">Comment</label>
-        <textarea class="form-control mb-2" type="text" id="comments" name="comments" rows="5" cols="10" formControlName="comments" required></textarea>
+        <textarea class="form-control mb-2" type="text" id="comments" name="comments" rows="5" cols="10" formControlName="comments"></textarea>
         <div *ngIf="signupForm.controls['comments'].invalid && (signupForm.controls['comments'].dirty || signupForm.controls['comments'].touched)"
           class="text-danger d-flex align-items-center m-0">
 
           <div *ngIf="signupForm.controls['comments'].errors?.['pattern']">
+            Comment contains invalid value
+          </div>
+          <div *ngIf="signupForm.controls['comments'].errors?.['maxlength']">
             Comment contains invalid value
           </div>
         </div>
@@ -101,7 +104,7 @@
 
       </div>
       <div class="col-12 d-flex justify-content-end p-0">
-        <button class="col-3 btn btn-primary m-1" type="submit" [disabled]="signupForm.errors == null ? false : true">Sign Up</button>
+        <button class="col-3 btn btn-primary m-1" type="submit" [disabled]="!signupForm.valid">Sign Up</button>
       </div>
     </form>
   </div>
